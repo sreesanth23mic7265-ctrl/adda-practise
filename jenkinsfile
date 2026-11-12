@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('compose'){
             steps{
-                git branch: main,
+                git branch: 'main',
                 url: 'https://github.com/sreesanth23mic7265-ctrl/adda-practise.git'
             }
         }
