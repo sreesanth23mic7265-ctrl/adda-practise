@@ -1,0 +1,28 @@
+pipeline{
+    agent any
+    stages{
+        stage('compose'){
+            steps{
+                git branch: main,
+                url: 'https://github.com/sreesanth23mic7265-ctrl/adda-practise.git'
+            }
+        }
+        stage('build'){
+            steps{
+                bat "mvn package -DskipTests"
+            }
+        }
+        stage('test'){
+            steps{
+                bat 'mvn test'
+            }
+        }
+        stage('deploy'){
+            steps{
+                bat '''
+                    start name "adda-practise" cmd /c "java -jar target/adda-practise-0.0.1-SNAPSHOT.jar"
+                '''
+            }
+        }
+    }
+}
